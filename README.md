@@ -1,6 +1,6 @@
-# Sistema de Filmes com TMDB
+# CineVerse
 
-Aplicação React que permite explorar filmes, criar listas de favoritos e descobrir novos conteúdos através da API do The Movie Database (TMDB).
+Aplicação React moderna para explorar filmes, criar listas de favoritos e descobrir novos conteúdos através da API do The Movie Database (TMDB).
 
 ## 🚀 Tecnologias
 
@@ -22,17 +22,20 @@ Aplicação React que permite explorar filmes, criar listas de favoritos e desco
 ## 🛠️ Instalação
 
 1. Clone o repositório:
+
 ```bash
 git clone <url-do-repositorio>
-cd nttdata-challenge
+cd cineverse
 ```
 
 2. Instale as dependências:
+
 ```bash
 npm install
 ```
 
 3. Configure as variáveis de ambiente:
+
 ```bash
 cp .env.example .env
 ```
@@ -95,53 +98,47 @@ src/
 ## 🎯 Páginas
 
 ### Home (`/`)
+
 - Lista de filmes populares
 - Grid responsivo
 - Paginação com botão "Carregar Mais"
 - Cards com poster, nota e botão de favoritar
 
 ### Detalhes (`/movie/:id`)
+
 - Imagem de fundo e informações detalhadas
 - Gêneros, data de lançamento, nota e sinopse
 - Botão para adicionar/remover dos favoritos
 
 ### Favoritos (`/favorites`)
+
 - Lista de filmes favoritados
 - Filtros de ordenação (título A-Z/Z-A, nota)
 - Botão de remoção nos cards
 - Estado vazio com call-to-action
 
 ### Busca (`/search?q=termo`)
+
 - Resultados da pesquisa
 - Destaque do termo buscado nos títulos
 - Paginação dos resultados
 
-## ✅ Funcionalidades Implementadas
+## ✨ Características
 
-- ✅ **4 páginas obrigatórias** completas
-- ✅ **Busca em tempo real** com destaque nos títulos
-- ✅ **Paginação** em todas as páginas
-- ✅ **Sistema de favoritos** com localStorage
-- ✅ **Design responsivo** mobile-first
-- ✅ **Dados reais da API** (gêneros, classificação)
-- ✅ **Estados de loading/erro/vazio**
-- ✅ **TypeScript 100%** tipado
-- ✅ **Testes unitários** com Jest + React Testing Library
-- ✅ **Glass effects** e animações modernas
+- **Interface moderna** com glass effects e animações
+- **Busca inteligente** com sugestões em tempo real
+- **Sistema de favoritos** persistente
+- **Design responsivo** para todos os dispositivos
+- **Dados atualizados** da API oficial do TMDB
+- **TypeScript** para maior segurança no desenvolvimento
+- **Testes unitários** para garantir qualidade
+- **Performance otimizada** com lazy loading
 
 ## 🚀 Deploy
 
-Veja instruções detalhadas em `deploy.md`
-
 **Plataformas suportadas:**
+
 - Vercel (recomendado)
 - Netlify
 - GitHub Pages
-
-## 🔧 Próximos Passos Opcionais
-
-- [ ] Adicionar testes unitários
-- [ ] Implementar infinite scroll
-- [ ] Adicionar mais filtros na busca
-- [ ] Melhorar acessibilidade
-- [ ] Adicionar PWA features
+- Surge.sh
