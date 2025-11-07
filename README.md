@@ -90,6 +90,11 @@ src/
 │   └── Search.tsx      # Página de busca
 ├── services/           # Serviços de API
 │   └── tmdb.ts         # Cliente da API TMDB
+├── test/               # Testes unitários
+│   ├── FavoritesContext.test.tsx
+│   ├── MovieCard.test.tsx
+│   ├── SearchMovieCard.test.tsx
+│   └── utils.test.ts
 ├── types/              # Tipos TypeScript
 │   └── movie.ts        # Interfaces dos filmes
 └── utils/              # Utilitários
@@ -133,6 +138,26 @@ src/
 - **TypeScript** para maior segurança no desenvolvimento
 - **Testes unitários** para garantir qualidade
 - **Performance otimizada** com lazy loading
+
+## 🧪 Testes
+
+O projeto inclui testes unitários abrangentes usando Jest e React Testing Library:
+
+- **FavoritesContext**: Testa o sistema de favoritos
+- **MovieCard**: Testa renderização e interações dos cards
+- **SearchMovieCard**: Testa destaque de termos de busca
+- **Utils**: Testa funções utilitárias
+
+```bash
+# Executar todos os testes
+npm test
+
+# Executar testes em modo watch
+npm run test:watch
+
+# Gerar relatório de cobertura
+npm run test:coverage
+```
 
 ## 🚀 Deploy
 
