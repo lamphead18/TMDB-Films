@@ -29,9 +29,7 @@ export const MovieCard = ({
         ])
         setGenre(genreName)
         setCertification(cert)
-      } catch {
-        // Manter valores padrão em caso de erro
-      }
+      } catch {}
     }
 
     loadMovieData()
@@ -48,7 +46,10 @@ export const MovieCard = ({
 
   return (
     <div className='glass-effect rounded-lg md:rounded-xl overflow-hidden hover:scale-105 transition-all duration-300 border border-white/10 flex flex-col h-full'>
-      <Link to={`/movie/${movie.id}`} className='flex-1 flex flex-col'>
+      <Link
+        to={`/movie/${movie.id}`}
+        className='flex-1 flex flex-col'
+        aria-label={`Ver detalhes do filme ${movie.title}`}>
         <div className='relative aspect-[2/3] overflow-hidden'>
           <img
             src={
@@ -56,15 +57,25 @@ export const MovieCard = ({
                 ? tmdbService.getImageUrl(movie.poster_path, 'w500')
                 : '/placeholder.jpg'
             }
-            alt={movie.title}
+            alt={`Pôster do filme ${movie.title}`}
             className='w-full h-full object-cover'
           />
-          <div className='absolute top-1 md:top-2 right-1 md:right-2 bg-black/70 backdrop-blur-sm text-white px-1 md:px-2 py-0.5 md:py-1 rounded md:rounded-lg text-xs md:text-sm flex items-center gap-0.5 md:gap-1'>
-            <Star className='w-2 h-2 md:w-3 md:h-3 fill-yellow-400 text-yellow-400' />
+          <div
+            className='absolute top-1 md:top-2 right-1 md:right-2 bg-black/70 backdrop-blur-sm text-white px-1 md:px-2 py-0.5 md:py-1 rounded md:rounded-lg text-xs md:text-sm flex items-center gap-0.5 md:gap-1'
+            aria-label={`Avaliação: ${movie.vote_average.toFixed(1)} de 10`}>
+            <Star
+              className='w-2 h-2 md:w-3 md:h-3 fill-yellow-400 text-yellow-400'
+              aria-hidden='true'
+            />
             {movie.vote_average.toFixed(1)}
           </div>
           <button
             onClick={handleFavoriteClick}
+            aria-label={
+              favorite
+                ? `Remover ${movie.title} dos favoritos`
+                : `Adicionar ${movie.title} aos favoritos`
+            }
             className={`absolute bottom-1 md:bottom-2 right-1 md:right-2 p-1 md:p-2 rounded-full bg-black/70 backdrop-blur-sm transition-all duration-200 ${
               favorite
                 ? 'text-red-400 hover:text-red-300 hover:bg-red-500/20'
@@ -74,6 +85,7 @@ export const MovieCard = ({
               className={`w-4 h-4 md:w-5 md:h-5 ${
                 favorite ? 'fill-current' : ''
               }`}
+              aria-hidden='true'
             />
           </button>
         </div>
@@ -104,8 +116,9 @@ export const MovieCard = ({
               e.preventDefault()
               removeFavorite(movie.id)
             }}
+            aria-label={`Remover ${movie.title} dos favoritos`}
             className='text-red-400 hover:text-red-300 hover:bg-red-500/20 p-1 md:p-2 rounded-full transition-all duration-200'>
-            <Trash2 className='w-4 h-4 md:w-5 md:h-5' />
+            <Trash2 className='w-4 h-4 md:w-5 md:h-5' aria-hidden='true' />
           </button>
         </div>
       )}

@@ -90,9 +90,15 @@ export const Header = () => {
     <header className='sticky top-0 z-50 w-full glass-effect border-b border-white/10'>
       <div className='container mx-auto px-4 py-4'>
         <div className='flex items-center gap-3 md:gap-6'>
-          <Link to='/' className='flex items-center gap-2 shrink-0 group'>
+          <Link
+            to='/'
+            className='flex items-center gap-2 shrink-0 group'
+            aria-label='Ir para página inicial do CineVerse'>
             <div className='bg-gradient-primary p-2 rounded-lg'>
-              <Film className='w-4 h-4 md:w-5 md:h-5 text-white' />
+              <Film
+                className='w-4 h-4 md:w-5 md:h-5 text-white'
+                aria-hidden='true'
+              />
             </div>
             <span className='text-gradient text-lg md:text-xl font-bold hidden sm:block'>
               CineVerse
@@ -110,23 +116,36 @@ export const Header = () => {
                 onFocus={() =>
                   localSuggestions.length > 0 && setShowSuggestions(true)
                 }
+                aria-label='Campo de busca de filmes'
+                aria-describedby='search-help'
                 className='w-full bg-white/5 text-white placeholder-gray-400 pl-10 md:pl-12 pr-10 md:pr-12 py-2 md:py-3 text-sm md:text-base rounded-xl border border-white/10 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all'
               />
+              <span id='search-help' className='sr-only'>
+                Digite o nome do filme que deseja buscar
+              </span>
               {searchQuery && (
                 <button
                   type='button'
                   onClick={clearSearch}
+                  aria-label='Limpar busca'
                   className='absolute right-3 md:right-4 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-gray-400 hover:text-white transition-colors z-10'>
-                  <X className='w-full h-full' />
+                  <X className='w-full h-full' aria-hidden='true' />
                 </button>
               )}
 
               {showSuggestions && localSuggestions.length > 0 && (
-                <div className='absolute top-full left-0 right-0 mt-1 bg-gray-900/95 backdrop-blur-sm border border-white/20 rounded-xl overflow-hidden z-50 shadow-2xl'>
+                <div
+                  className='absolute top-full left-0 right-0 mt-1 bg-gray-900/95 backdrop-blur-sm border border-white/20 rounded-xl overflow-hidden z-50 shadow-2xl'
+                  role='listbox'
+                  aria-label='Sugestões de filmes'>
                   {localSuggestions.map((movie) => (
                     <button
                       key={movie.id}
                       onClick={() => handleSuggestionClick(movie)}
+                      role='option'
+                      aria-label={`Ver detalhes do filme ${
+                        movie.title
+                      } (${new Date(movie.release_date).getFullYear()})`}
                       className='w-full p-3 text-left hover:bg-white/10 transition-colors border-b border-white/10 last:border-b-0 flex items-center gap-3'>
                       <img
                         src={
@@ -160,12 +179,18 @@ export const Header = () => {
                 Início
               </Button>
             </Link>
-            <Link to='/favorites'>
+            <Link
+              to='/favorites'
+              aria-label={`Ir para favoritos${
+                favorites.length > 0 ? ` (${favorites.length} filmes)` : ''
+              }`}>
               <Button className='bg-gradient-primary hover:opacity-90 text-white relative px-3 md:px-4 py-2 text-sm md:text-base'>
-                <Heart className='w-4 h-4 md:mr-2' />
+                <Heart className='w-4 h-4 md:mr-2' aria-hidden='true' />
                 <span className='hidden md:inline'>Favoritos</span>
                 {favorites.length > 0 && (
-                  <span className='absolute -top-1 -right-1 bg-gradient-secondary text-white text-xs w-4 h-4 md:w-5 md:h-5 rounded-full flex items-center justify-center text-[10px] md:text-xs'>
+                  <span
+                    className='absolute -top-1 -right-1 bg-gradient-secondary text-white text-xs w-4 h-4 md:w-5 md:h-5 rounded-full flex items-center justify-center text-[10px] md:text-xs'
+                    aria-hidden='true'>
                     {favorites.length}
                   </span>
                 )}

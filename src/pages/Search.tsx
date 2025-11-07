@@ -96,15 +96,21 @@ export const Search = () => {
         </div>
       )}
 
-      <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-6'>
+      <main
+        className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-6'
+        role='main'
+        aria-label={`Resultados da busca por ${query}`}>
         {movies.map((movie) => (
           <SearchMovieCard key={movie.id} movie={movie} searchTerm={query} />
         ))}
-      </div>
+      </main>
 
       {loading && (
-        <div className='text-center py-8'>
-          <div className='inline-block animate-spin rounded-full h-6 w-6 md:h-8 md:w-8 border-b-2 border-purple-500'></div>
+        <div className='text-center py-8' role='status' aria-live='polite'>
+          <div
+            className='inline-block animate-spin rounded-full h-6 w-6 md:h-8 md:w-8 border-b-2 border-purple-500'
+            aria-hidden='true'></div>
+          <span className='sr-only'>Buscando filmes...</span>
         </div>
       )}
 
@@ -112,6 +118,7 @@ export const Search = () => {
         <div className='text-center py-6 md:py-8'>
           <button
             onClick={loadMore}
+            aria-label='Carregar mais resultados da busca'
             className='bg-gradient-primary hover:opacity-90 text-white px-6 md:px-8 py-2 md:py-3 text-sm md:text-base rounded-xl transition-all duration-200 font-medium'>
             Carregar Mais
           </button>
